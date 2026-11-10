@@ -1,5 +1,3 @@
-# INSIGHSD-PEX
-Projeto de Extensão
 # Insight Studio Design — Site Institucional
 
 Protótipo de site institucional desenvolvido para a **Insight Studio Design (Insight SD)**, com o objetivo de fortalecer sua presença digital, apresentar seus serviços e facilitar o contato com potenciais clientes.
