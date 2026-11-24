@@ -4,7 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Insight Studio Design | Design Gráfico Criativo</title>
-  <meta name="description" content="Insight Studio Design — Transformando ideias em realidade através do poder do design." />
+  <meta name="description" content="Insight Studio Design, em São Luiz Gonzaga (RS): identidade visual, design digital e materiais impressos. Conheça nossos serviços e entre em contato." />
+  <link rel="canonical" href="https://insightsdproto.netlify.app/" />
+  <meta property="og:title" content="Insight Studio Design | Design Gráfico Criativo" />
+  <meta property="og:description" content="Identidade visual, design digital e materiais impressos. Conheça nossos serviços." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://insightsdproto.netlify.app/" />
+  <meta property="og:locale" content="pt_BR" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +27,19 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     
     body { 
       font-family: 'Outfit', sans-serif; 
       background-color: var(--bg-color); 
+      /* Fundo contínuo em toda a página, sem limites entre seções. */
+      background-image:
+        radial-gradient(ellipse 700px 440px at 50% 310px, rgba(245, 197, 24, 0.075), transparent 100%),
+        radial-gradient(ellipse 460px 460px at 100% 220px, rgba(245, 197, 24, 0.09), transparent 100%),
+        radial-gradient(ellipse 360px 420px at 0% 570px, rgba(255, 255, 255, 0.045), transparent 100%),
+        radial-gradient(ellipse 600px 550px at 12% 48%, rgba(245, 197, 24, 0.045), transparent 100%),
+        radial-gradient(ellipse 520px 520px at 90% 82%, rgba(245, 197, 24, 0.035), transparent 100%);
+      background-repeat: no-repeat;
       color: var(--text-main); 
       line-height: 1.6; 
       overflow-x: hidden;
@@ -125,10 +139,10 @@
     #home {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: center; align-items: center; text-align: center;
-      background: radial-gradient(circle at 50% 30%, rgba(245, 197, 24, 0.08) 0%, var(--bg-color) 60%);
+      background: transparent;
       padding-top: 10rem;
     }
-    
+
     #home h1 { 
       font-size: 4rem; font-weight: 800; line-height: 1.1; 
       margin-bottom: 1.5rem; max-width: 900px;
@@ -164,7 +178,7 @@
 
     /* --- SEÇÃO SERVIÇOS --- */
     .grid-servicos { 
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); 
       gap: 2rem; 
     }
     .card {
@@ -183,23 +197,127 @@
     
     .card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); position: relative; z-index: 1;}
     .card p { color: var(--text-muted); position: relative; z-index: 1; font-size: 1rem;}
-    .card .icone { font-size: 2.5rem; margin-bottom: 1.5rem; display: inline-block; position: relative; z-index: 1;}
+    .card .icone {
+      width: 64px; height: 64px; margin-bottom: 1.5rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(245, 197, 24, 0.14), rgba(245, 197, 24, 0.06));
+      border: 1px solid rgba(245, 197, 24, 0.2);
+      color: var(--primary);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .card .icone svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     /* --- SEÇÃO PORTFÓLIO --- */
     .grid-portfolio {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem;
     }
     .portfolio-item {
       background: var(--surface); border-radius: 20px; overflow: hidden;
-      border: 1px solid var(--border); position: relative; cursor: pointer;
-      transition: transform 0.3s;
+      border: 1px solid var(--border); position: relative;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .portfolio-item:hover { transform: scale(1.03); }
     .portfolio-item .img-placeholder {
-      height: 250px; background: #222; display: flex; align-items: center; justify-content: center;
-      color: #555; font-weight: 600; transition: background 0.3s;
+      height: 250px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 1.4rem;
+      color: var(--text-main);
+      font-weight: 600;
+      transition: filter 0.25s ease, background-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background-color: #1d1d1d;
     }
-    .portfolio-item:hover .img-placeholder { background: #2a2a2a; }
+    .portfolio-item .img-placeholder::before,
+    .portfolio-item .img-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .portfolio-item .img-placeholder::before {
+      background: linear-gradient(140deg, rgba(255,255,255,0.1), transparent 45%),
+                  linear-gradient(0deg, rgba(10,10,10,0.15), rgba(10,10,10,0.55));
+      z-index: -1;
+    }
+    .portfolio-item .img-placeholder::after {
+      inset: auto;
+      width: 180px;
+      height: 180px;
+      right: -34px;
+      top: -38px;
+      border-radius: 50%;
+      background: rgba(245, 197, 24, 0.12);
+      filter: blur(2px);
+      z-index: -1;
+    }
+    .portfolio-item .img-placeholder.alpha {
+      background-image:
+        linear-gradient(135deg, rgba(245,197,24,0.26), rgba(245,197,24,0.03)),
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.16), transparent 35%),
+        linear-gradient(135deg, #1f1f1f, #0f0f0f);
+    }
+    .portfolio-item .img-placeholder.beta {
+      background-image:
+        linear-gradient(135deg, rgba(245,197,24,0.18), rgba(255,255,255,0.03)),
+        radial-gradient(circle at 72% 28%, rgba(255,255,255,0.14), transparent 28%),
+        linear-gradient(135deg, #232323, #111111);
+    }
+    .portfolio-item .img-placeholder.gamma {
+      background-image:
+        linear-gradient(135deg, rgba(245,197,24,0.22), rgba(245,197,24,0.02)),
+        radial-gradient(circle at 25% 30%, rgba(255,255,255,0.12), transparent 24%),
+        linear-gradient(135deg, #252525, #0f0f0f);
+    }
+    .portfolio-item .img-placeholder .mockup-card {
+      width: 100%;
+      padding: 1rem 1rem 0.9rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+    }
+    .portfolio-item .img-placeholder .mockup-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 0.45rem;
+    }
+    .portfolio-item .img-placeholder .mockup-title {
+      display: block;
+      font-size: 1.15rem;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .portfolio-item .img-placeholder .mockup-subtitle {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.72);
+    }
+    /* Destaque sem redimensionar os cartões ou alterar a área de hover. */
+    @media (hover: hover) and (pointer: fine) {
+      .portfolio-item:hover {
+        border-color: rgba(245, 197, 24, 0.45);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+      .portfolio-item:hover .img-placeholder { filter: brightness(1.04); }
+    }
     .portfolio-item .info { padding: 1.5rem; }
     .portfolio-item .info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--primary);}
     .portfolio-item .info p { color: var(--text-muted); font-size: 0.9rem; }
@@ -232,12 +350,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal.active { animation: fadeUp 0.8s ease-out; }
 
     /* --- RESPONSIVIDADE --- */
+    .nav-contato { display: none; }
     @media (max-width: 950px) {
       .btn-header { display: none; }
+      .nav-contato { display: list-item; }
     }
 
     @media (max-width: 768px) {
@@ -245,52 +364,105 @@
       nav { gap: 0; }
       nav ul {
         display: none; flex-direction: column; position: absolute;
-        top: 120%; left: 0; width: 100%; background: var(--surface);
+        top: 100%; left: 0; width: 100%; background: var(--surface);
         padding: 1rem; gap: 0.5rem; border-bottom: 1px solid var(--border);
         border-radius: 0; border: none; border-bottom: 1px solid var(--border);
       }
       nav ul a { padding: 1rem; text-align: center; }
-      nav ul.ativo { display: flex; }
-      .menu-toggle { display: block; }
+      nav ul.ativo { display: flex; max-height: 70vh; overflow-y: auto; }
+      .js .menu-toggle { display: block; }
+      html:not(.js) header { position: static; flex-wrap: wrap; gap: 0.8rem; }
+      html:not(.js) nav { width: 100%; }
+      html:not(.js) nav ul { display: flex; position: static; flex-direction: row; flex-wrap: wrap; }
+      html:not(.js) nav ul a { padding: 0.5rem; }
       
       #home h1 { font-size: 2.5rem; }
       section { padding: 6rem 1.5rem 3rem; }
       .section-header h2 { font-size: 2rem; }
     }
+    /* Refinamentos: navegação acessível e telas estreitas */
+    :where(a, button):focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+    /* O foco de uma âncora não deve contornar uma seção inteira (Safari/iOS). */
+    main[tabindex="-1"]:focus, section[tabindex="-1"]:focus { outline: none; }
+    .keyboard-nav section:focus > h1,
+    .keyboard-nav section:focus > .section-header h2,
+    .keyboard-nav main:focus > #home h1 {
+      outline: 2px solid var(--primary); outline-offset: 6px; border-radius: 4px;
+    }
+    .skip-link { position: fixed; top: 0.5rem; left: 0.5rem; z-index: 2000;
+      transform: translateY(-200%); background: var(--primary); color: #000;
+      padding: 0.75rem 1rem; border-radius: 8px; font-weight: 600; }
+    .skip-link:focus { transform: translateY(0); }
+    .menu-toggle { min-width: 44px; min-height: 44px; }
+    #conteudo { scroll-margin-top: 90px; }
+    .img-placeholder { text-align: center; padding: 1rem; }
+    @media (max-width: 380px) {
+      header .logo { font-size: 1.15rem; gap: 8px; }
+      #home h1 { font-size: 2rem; }
+      .btn-contato { padding: 1rem 1.5rem; }
+    }
+    /* Menos repinturas e animações durante a rolagem em telas de toque. */
+    @media (max-width: 768px), (hover: none) and (pointer: coarse) {
+      header, header.scrolled {
+        background: #0a0a0a; backdrop-filter: none; -webkit-backdrop-filter: none;
+        box-shadow: none; transition: none;
+      }
+      .reveal.active { animation: none; }
+      #home h1, #home p, .btn-main { animation: none; opacity: 1; }
+      .portfolio-item .img-placeholder .mockup-card {
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+        background: rgba(20,20,20,0.72);
+      }
+      .card:hover, .btn-main:hover, .btn-contato:hover, .btn-header:hover { transform: none; }
+      .card, .card::before, .portfolio-item, .img-placeholder, .btn-main, .btn-contato { transition: none; }
+    }
+    @media (max-width: 768px) {
+      header, header.scrolled { padding: 0.85rem 5%; }
+      .js .menu-toggle { margin-left: auto; }
+      .js header nav { width: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      #home h1, #home p, .btn-main { opacity: 1; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
   <!-- HEADER -->
   <header id="navbar">
     <a href="#home" class="logo">
-      <div class="logo-icone">💡</div> 
+      <span class="logo-icone" aria-hidden="true">💡</span> 
       Insight SD
     </a>
     
-    <button class="menu-toggle" aria-label="Abrir menu" onclick="document.querySelector('nav ul').classList.toggle('ativo')">☰</button>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="menu-links" aria-expanded="false">☰</button>
     
-    <nav>
+    <nav aria-label="Navegação principal">
       <!-- A classe "active-link" será controlada pelo JavaScript -->
       <ul id="menu-links">
-        <li><a href="#home" class="active-link">Início</a></li>
+        <li><a href="#home" class="active-link" aria-current="location">Início</a></li>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#portfolio">Portfólio</a></li>
+        <li class="nav-contato"><a href="#contato">Contato</a></li>
       </ul>
       <a href="#contato" class="btn-header">Vamos conversar</a>
     </nav>
   </header>
 
+  <main id="conteudo" tabindex="-1">
   <!-- HERO -->
-  <section id="home">
+  <section id="home" tabindex="-1">
     <h1>Transformando ideias em realidade através do poder do <span>design</span></h1>
     <p>Design Gráfico estratégico e criativo. Elevando a identidade visual da sua marca.</p>
     <a href="#contato" class="btn-main">Iniciar Projeto</a>
   </section>
 
   <!-- SOBRE -->
-  <section id="sobre" class="reveal">
+  <section id="sobre" tabindex="-1" class="reveal">
     <div class="section-header">
       <h2>O Studio</h2>
     </div>
@@ -300,24 +472,42 @@
   </section>
 
   <!-- SERVIÇOS -->
-  <section id="servicos" class="reveal">
+  <section id="servicos" tabindex="-1" class="reveal">
     <div class="section-header">
       <h2>Nossas <span>Especialidades</span></h2>
       <p>Soluções visuais sob medida para o seu negócio.</p>
     </div>
     <div class="grid-servicos">
       <div class="card">
-        <div class="icone">✨</div>
+        <div class="icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 4l1.6 3.9L17.5 9.5l-3.9 1.6L12 15l-1.6-3.9L6.5 9.5l3.9-1.6L12 4z" />
+            <path d="M18.5 3.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z" />
+          </svg>
+        </div>
         <h3>Identidade Visual</h3>
         <p>Criação de logotipos, paletas de cores, tipografia e manuais de marca que traduzem a personalidade da sua empresa.</p>
       </div>
       <div class="card">
-        <div class="icone">📱</div>
+        <div class="icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <rect x="6.5" y="3.5" width="11" height="17" rx="2.5" />
+            <path d="M9 7.5h6" />
+            <path d="M10.5 17.5h3" />
+          </svg>
+        </div>
         <h3>Design Digital</h3>
         <p>Artes para redes sociais, criativos para anúncios e layouts modernos para destacar sua marca no ambiente online.</p>
       </div>
       <div class="card">
-        <div class="icone">📄</div>
+        <div class="icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M8 3.5h6l4 4v13H8a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2z" />
+            <path d="M14 3.5v4h4" />
+            <path d="M9.5 12h5" />
+            <path d="M9.5 15.5h5" />
+          </svg>
+        </div>
         <h3>Materiais Impressos</h3>
         <p>Cartões de visita, panfletos, catálogos e embalagens com acabamento profissional e design impactante.</p>
       </div>
@@ -325,28 +515,46 @@
   </section>
 
   <!-- PORTFÓLIO -->
-  <section id="portfolio" class="reveal">
+  <section id="portfolio" tabindex="-1" class="reveal">
     <div class="section-header">
       <h2>Projetos em <span>Destaque</span></h2>
-      <p>Uma prévia do que criamos.</p>
+      <p>Exemplos ilustrativos do estilo visual e das possibilidades de criação.</p>
     </div>
     <div class="grid-portfolio">
       <div class="portfolio-item">
-        <div class="img-placeholder">[Inserir Imagem do Projeto]</div>
+        <div class="img-placeholder alpha" aria-hidden="true">
+          <div class="mockup-card">
+            <span class="mockup-tag">Conceito Visual</span>
+            <strong class="mockup-title">Branding moderno para marca autoral</strong>
+            <span class="mockup-subtitle">Composição ilustrativa para apresentação do portfólio</span>
+          </div>
+        </div>
         <div class="info">
           <h3>Projeto Alpha</h3>
           <p>Identidade Visual & Branding</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <div class="img-placeholder">[Inserir Imagem do Projeto]</div>
+        <div class="img-placeholder beta" aria-hidden="true">
+          <div class="mockup-card">
+            <span class="mockup-tag">Embalagem</span>
+            <strong class="mockup-title">Layout sofisticado com foco em produto</strong>
+            <span class="mockup-subtitle">Exemplo visual para futura vitrine de projetos reais</span>
+          </div>
+        </div>
         <div class="info">
           <h3>Projeto Beta</h3>
           <p>Design de Embalagem</p>
         </div>
       </div>
       <div class="portfolio-item">
-        <div class="img-placeholder">[Inserir Imagem do Projeto]</div>
+        <div class="img-placeholder gamma" aria-hidden="true">
+          <div class="mockup-card">
+            <span class="mockup-tag">Impresso</span>
+            <strong class="mockup-title">Peças gráficas com apresentação elegante</strong>
+            <span class="mockup-subtitle">Mockup conceitual para ilustrar possibilidades do studio</span>
+          </div>
+        </div>
         <div class="info">
           <h3>Projeto Gama</h3>
           <p>Materiais Impressos</p>
@@ -356,87 +564,158 @@
   </section>
 
   <!-- CONTATO -->
-  <section id="contato" class="reveal">
+  <section id="contato" tabindex="-1" class="reveal">
     <div class="section-header">
       <h2>Vamos criar <span>juntos?</span></h2>
       <p>Pronto para elevar o nível da sua marca? Entre em contato.</p>
     </div>
     <div class="contato-wrapper">
       <a href="https://instagram.com/insight_sd" target="_blank" rel="noopener" class="btn-contato">
-        📸 Instagram
+        <span aria-hidden="true">📸</span> Instagram
       </a>
       <a href="https://wa.link/ng4fpx" target="_blank" rel="noopener" class="btn-contato">
-        💬 WhatsApp
+        <span aria-hidden="true">💬</span> WhatsApp
       </a>
     </div>
   </section>
+
+  </main>
 
   <footer>
     <p>&copy; 2026 Insight Studio Design. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // 1. Mudar o fundo do Header ao rolar a tela
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
+    // Menu acessível: estado sincronizado e fechamento por Escape.
+    const header = document.getElementById('navbar');
+    const menu = document.getElementById('menu-links');
+    const toggle = document.querySelector('.menu-toggle');
+    const mobile = window.matchMedia('(max-width: 768px)');
+    const navLinks = [...menu.querySelectorAll('a')];
+    const sections = [...document.querySelectorAll('main section')];
 
-    // 2. Rolagem suave e fechar menu mobile
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const alvo = document.querySelector(link.getAttribute('href'));
-        if (alvo) {
-          alvo.scrollIntoView({ behavior: 'smooth' });
-          document.querySelector('nav ul').classList.remove('ativo');
-        }
-      });
-    });
-
-    // 3. Animação de revelar elementos ao rolar a página
-    function revelarAoRolar() {
-      var reveals = document.querySelectorAll(".reveal");
-      for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
-          reveals[i].classList.add("active");
-        }
-      }
+    function setMenu(open, restoreFocus = false) {
+      menu.classList.toggle('ativo', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      if (restoreFocus) toggle.focus();
     }
-    window.addEventListener("scroll", revelarAoRolar);
-    revelarAoRolar(); 
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('ativo')));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menu.classList.contains('ativo')) setMenu(false, true);
+    });
+    document.addEventListener('click', event => {
+      if (!header.contains(event.target) && menu.classList.contains('ativo')) setMenu(false);
+    });
+    mobile.addEventListener('change', () => {
+      const restore = mobile.matches && menu.contains(document.activeElement);
+      setMenu(false, restore);
+    });
+    // Foco visível para teclado, sem contorno de seção ao tocar na tela.
+    document.addEventListener('keydown', event => {
+      if (['Tab', 'Enter', ' ', 'Escape', 'ArrowUp', 'ArrowDown'].includes(event.key))
+        document.documentElement.classList.add('keyboard-nav');
+    });
+    document.addEventListener('pointerdown', () => {
+      document.documentElement.classList.remove('keyboard-nav');
+    }, {passive: true});
 
-    // 4. Lógica para marcar o link ativo no menu
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("#menu-links a");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        // Ajuste para identificar a seção atual baseada no scroll
-        if (pageYOffset >= sectionTop - sectionHeight / 3) {
-          current = section.getAttribute("id");
+    const centeredSections = new Set(['servicos', 'portfolio']);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function alignSection(section, smooth = true) {
+      const headerHeight = header.offsetHeight;
+      let top = section.getBoundingClientRect().top + window.scrollY;
+      let gap = 0;
+      if (centeredSections.has(section.id)) {
+        const title = section.querySelector('.section-header');
+        const grid = section.lastElementChild;
+        if (title && grid) {
+          top = section.offsetTop + title.offsetTop;
+          const height = grid.offsetTop + grid.offsetHeight - title.offsetTop;
+          const available = window.innerHeight - headerHeight;
+          gap = Math.max(16, (available - height) / 2);
         }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove("active-link");
-        if (link.getAttribute("href").includes(current)) {
-          link.classList.add("active-link");
+      }
+      window.scrollTo({top: Math.max(0, top - headerHeight - gap),
+        behavior: smooth && !reducedMotion.matches ? 'smooth' : 'auto'});
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        const target = document.getElementById(link.hash.slice(1));
+        if (!target) return;
+        event.preventDefault();
+        setMenu(false);
+        // Apenas a ativação por teclado/tecnologia assistiva desloca o foco.
+        if (event.detail === 0) {
+          document.documentElement.classList.add('keyboard-nav');
+          target.focus({preventScroll: true});
         }
+        if (location.hash !== link.hash) {
+          try { history.pushState(null, '', link.hash); } catch (_) { /* arquivo local */ }
+        }
+        alignSection(target);
       });
     });
+    function alignHash() {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target) alignSection(target, false);
+    }
+    window.addEventListener('hashchange', alignHash);
+    // Não reposicionar a página repetidamente quando fontes terminarem de carregar.
+    if (location.hash) window.addEventListener('load', alignHash, {once: true});
+
+    // Atualização do cabeçalho e indicação da seção atual.
+    let lastSection = '';
+    let lastScrolled = null;
+    function updateNavigation() {
+      const scrolled = window.scrollY > 50;
+      if (scrolled !== lastScrolled) {
+        header.classList.toggle('scrolled', scrolled);
+        lastScrolled = scrolled;
+      }
+      let current = sections[0].id;
+      const headerHeight = header.getBoundingClientRect().height;
+      const offset = headerHeight + (window.innerHeight - headerHeight) / 2;
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= offset) current = section.id;
+      }
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        current = sections[sections.length - 1].id;
+      }
+      if (current === lastSection) return;
+      lastSection = current;
+      navLinks.forEach(link => {
+        const active = link.hash === '#' + current;
+        link.classList.toggle('active-link', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    let pending = false;
+    function scheduleNavigation() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => { updateNavigation(); pending = false; });
+    }
+    window.addEventListener('scroll', scheduleNavigation, {passive: true});
+    window.addEventListener('resize', scheduleNavigation);
+    window.addEventListener('load', scheduleNavigation);
+    document.documentElement.classList.add('js');
+    updateNavigation();
+
+    // Animações opcionais: o conteúdo permanece disponível sem JavaScript.
+    if ('IntersectionObserver' in window && !reducedMotion.matches && !mobile.matches && !window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!entry.target.contains(document.activeElement)) entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.05});
+      document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+    }
   </script>
 </body>
 </html>
